@@ -19,7 +19,7 @@ export const CustomInput = (props: InputProps) => {
 
 return(
     <>
-    <StyledInput value={key} onChange={handleChange}/> <button onClick={handleClick}> Entrar </button>
+    <StyledInput value={key} onChange={handleChange} placeholder="Insira sua chave" /> <button onClick={handleClick}> Entrar </button>
     </>
 )
 
