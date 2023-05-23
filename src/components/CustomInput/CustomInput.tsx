@@ -1,4 +1,5 @@
 import { useState } from "react"
+import { Button } from "../Button/Button"
 import styled from "styled-components"
 
 type InputProps = {
@@ -19,30 +20,42 @@ export const CustomInput = (props: InputProps) => {
 
 return(
     <>
-    <StyledInput value={key} onChange={handleChange} placeholder="Insira sua chave" /> <button onClick={handleClick}> Entrar </button>
+    <div>
+    <p><StyledInput value={key} onChange={handleChange} placeholder="Insira sua chave" /></p>
+    <Button onClick={handleClick}> ENTRAR </Button>
+    </div>
+    
     </>
 )
 
 }
 
 const StyledInput = styled.input`
-    display: block;
     text-decoration: none;
     text-align: center;
-    padding: 21px 12px;
+    padding: 10px 10px;
+    width: 450px;
+    font-size: 1em;
+    border: 1px solid #602749;
+    border-radius: 0.25rem!important;
+    color: white;
+    background-color: #602749;
     transition: all 0.4s ease-in-out;
-    animation: fadeIn 3s;
+    animation: fadeIn 2s;
+    
+    &:focus-visible {
+        outline: 1px solid #602749;
+    }
+
+
 
     @media screen and (max-width: 920px) {
-        display: inline-block;
-        font-size: 0.7em;
-        padding: 10px 12px;
-        text-align: right;
-        width: 82px;
         position: relative;
         
 
     }
+
+    
 
     @keyframes fadeIn {
         0% {
@@ -54,75 +67,4 @@ const StyledInput = styled.input`
         }
     }
 
-    :hover {
-        cursor: pointer;
-    }
-
-    &.BH {
-        :hover {
-            background-color: #80008053;
-        }
-
-        &.active {
-            background-color: #80008053;
-        }
-        
-    }
-
-    &.DB {
-        :hover {
-            background-color: #c4939352;
-        }
-        &.active {
-            background-color: #c4939352;
-        }
-        
-    }
-    &.EYE {
-        :hover {
-            background-color: #d240ff52;
-        }
-        &.active {
-            background-color: #d240ff52;
-        }
-        
-    }
-    &.GD {
-        :hover {
-            background-color: #51f18e52;
-        }
-        &.active {
-            background-color: #51f18e52;
-        }
-        
-    }
-    &.TH {
-        :hover {
-            background-color: #71f15152;
-        }
-        &.active {
-            background-color: #71f15152;
-        }
-        
-    }
-    &.HT {
-        :hover {
-            background: #c45b0b7a;
-        }
-
-        &.active {
-            background: linear-gradient(180deg, #00000073 30%, #c45b0bb8 100%);
-        }
-    }
-        
-    &.QM {
-        :hover {
-            background: #8080807a;
-        }
-        &.active {
-            background: linear-gradient(180deg, #0f0f0f4d 0%, rgba(160,175,177,0.38699229691876746) 48%, #1d1c1c46 100%);
-        }
-        
-    }
-      
 `
