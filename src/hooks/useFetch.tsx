@@ -1,4 +1,6 @@
 import { useState, useEffect } from "react";
+
+
 export function useFetch<T = unknown>(url: string) {
 const [data, setData] = useState<T | null>(null)
 
@@ -15,10 +17,9 @@ useEffect(() => {
     fetch(url, requestOptions)
     .then(response => response.json())
     .then(response => {
-        setData(response.response[0].team.name);
+        setData(response.response);
     })
     .catch(error => console.log('error', error));
-
 }, [])
 return {data}
 }
