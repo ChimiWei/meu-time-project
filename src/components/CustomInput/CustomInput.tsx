@@ -1,4 +1,5 @@
 import { useState } from "react"
+import { Button } from "../Button/Button"
 import styled from "styled-components"
 
 type InputProps = {
@@ -21,7 +22,7 @@ return(
     <>
     <div>
     <p><StyledInput value={key} onChange={handleChange} placeholder="Insira sua chave" /></p>
-    <button onClick={handleClick}> Entrar </button>
+    <Button onClick={handleClick}> ENTRAR </Button>
     </div>
     
     </>
