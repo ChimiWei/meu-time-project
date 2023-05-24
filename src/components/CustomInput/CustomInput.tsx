@@ -13,7 +13,6 @@ export const CustomInput = (props: InputProps) => {
     
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setKey(event.target.value)
-        console.log('value is:', event.target.value);
       };
     const handleClick = () => {
         props.setValue(key)

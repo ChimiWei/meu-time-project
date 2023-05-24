@@ -8,7 +8,6 @@ import { Title } from "./components/Title/Title"
 function App() {
  const { error, isValid, key, handleSetKey } = useKey()
  
- console.log(isValid)
   return (
     <>
       <Section>
