@@ -1,22 +1,27 @@
 import { useKey } from "./hooks/useKey"
-import { useState } from "react"
 import { CustomInput } from "./components/CustomInput/CustomInput"
 import { Section } from "./layouts/section/Section"
 import { Title } from "./components/Title/Title"
 
 
+
 function App() {
- const { status, isValid, setIsValid, key, handleSetKey } = useKey()
- console.log(key)
+ const { error, isValid, key, handleSetKey } = useKey()
+ 
+ console.log(isValid)
   return (
     <>
       <Section>
       <Title>
         Meu Time
       </Title>
-      <div>
+      {isValid == false && <>
         <CustomInput value={key} setValue={handleSetKey}/> 
-      </div>
+        <small>{error}</small>
+      </>}
+      {isValid == true && <>
+        <p> Login Realizado! </p>
+      </>}
       </Section>
     </>
   )
