@@ -17,6 +17,7 @@ export const CustomInput = (props: InputProps) => {
       };
     const handleClick = () => {
         props.setValue(key)
+        setKey('')
     }
 
 return(
