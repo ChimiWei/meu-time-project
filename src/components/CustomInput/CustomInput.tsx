@@ -10,6 +10,7 @@ type InputProps = {
 
 export const CustomInput = (props: InputProps) => {
     const [key, setKey] = useState<string>('')
+    
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setKey(event.target.value)
         console.log('value is:', event.target.value);
