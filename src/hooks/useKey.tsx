@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 export function useKey() {
 const [key, setKey] = useState<string>('')
 const [isValid, setIsValid] = useState<boolean>(false)
-const [fetched, setFetched] = useState<boolean>(true)
+const [isFetching, setIsFetching] = useState<boolean>(false)
 const [error, setError] = useState<string | boolean>('')
 
 var myHeaders = new Headers();
@@ -19,7 +19,6 @@ var requestOptions = {
 
 
 const handleSetKey = (value: string) => {
-    setFetched(false)
     setKey(value)
 }
 
@@ -27,22 +26,25 @@ const handleSetKey = (value: string) => {
 
 useEffect(() => {
     if(key != '') {
+        setIsFetching(true)
         fetch("https://v3.football.api-sports.io/status", requestOptions)
         .then(response => response.json())
         .then(response => {
             if(response.errors.token) {
-                
                 setError(response.errors.token)
             } else {
                 setIsValid(response.response.subscription.active)
             }
         })
         .catch(error => console.log('error', error))
+        .finally(()=> {
+            setIsFetching(false)
+        })
 
         
     }
 }, [key])
 
 
-return {error, isValid, key, handleSetKey}
+return {error, isValid, key, handleSetKey, isFetching}
 }
