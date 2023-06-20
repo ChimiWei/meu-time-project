@@ -8,8 +8,9 @@ const [isFetching, setIsFetching] = useState<boolean>(false)
 const [error, setError] = useState<string | boolean>('')
 
 var myHeaders = new Headers();
-myHeaders.append("x-rapidapi-host", "v3.football.api-sports.io");
 myHeaders.append("x-rapidapi-key", key);
+myHeaders.append("x-rapidapi-host", "v3.football.api-sports.io");
+
 
 
 var requestOptions = {
@@ -33,7 +34,7 @@ useEffect(() => {
             if(response.errors.token) {
                 setError(response.errors.token)
             } else {
-                setIsValid(response.response.subscription.active)
+                setIsValid(true)
             }
         })
         .catch(error => console.log('error', error))
