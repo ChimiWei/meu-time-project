@@ -3,6 +3,7 @@ import styled from "styled-components"
 import { useFetch } from "../../hooks/useFetch"
 import { Loader } from "../Loader/Loader"
 import { CenterContainer } from "../../layouts/CenterContainer/CenterContainer"
+import { Query } from "@testing-library/react"
 
 
 type SelectProps = {
@@ -19,21 +20,35 @@ type QueryObject = {
      name: string,
      logo: string
      }
+    seasons: {
+        year: number
+    }[]
 }
 
 export const SelectLeague = (props: SelectProps) => {
 
+const [ selectedLeague, setSelectedLeague ] = useState<QueryObject | undefined>()
+let test: QueryObject[] = [{league: {id: 1, name: 'oi', logo: 'aoksdoakda0'}, seasons: [{year: 2019}]}]
 
-const { data, isFetching } = useFetch<QueryObject[]>(props.query)
+const { data, isFetching } = useFetch<QueryObject[]>({parameter: 'leagues?code=', value: props.query})
 
 const handleSelect = (event: React.ChangeEvent<HTMLSelectElement>) => {
     props.setSelected(event.target.value)
+    setSelectedLeague(data?.find(item => item.league.id === Number(event.target.value)))
+    console.log(data)
 }
 
 const handleClick = (event: any) => {
  console.log(event.target.value)
- console.log(data)
+ 
 }
+
+const handleSeasonClick = (event: any) => {
+    console.log(event.target.value)
+    console.log(selectedLeague)
+   }
+   
+
 
 
 
@@ -43,15 +58,20 @@ return(<>
             <Loader /> 
         </CenterContainer>
        
-    ):(
+    ):(<>
         <StyledSelect value={props.selected} onChange={handleSelect} onClick={handleClick} disabled={props.isDisabled}>
             <option value='' disabled={true} >{props.text}</option>
             { data?.map((item) => {
                 return <option key={item.league.name} value={item.league.id}>{item.league.name}</option>
             })}
         </StyledSelect>
-
-    )}
+        <StyledSelect value={props.selected} onChange={handleSelect} onClick={handleSeasonClick} disabled={props.selected === '' ? true : false}>
+            <option value='' disabled={true} >Selecione a temporada </option>
+            { selectedLeague?.seasons.map((item) => {
+                return <option key={item.year} value={item.year}>{item.year}</option>
+            })}
+        </StyledSelect>    
+   </>)}
     </>
 )
 }
