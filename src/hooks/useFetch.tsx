@@ -1,7 +1,13 @@
 import { useState, useEffect, useContext } from "react";
 import { KeyContext } from "../App";
 
-export function useFetch<T = unknown>(query: string) {
+type QueryObject = {
+  parameter: string,
+  value: string | number
+}
+
+
+export function useFetch<T = unknown>(query: QueryObject) {
 const [data, setData] = useState<T | null>(null)
 const [isFetching, setIsFetching] = useState<boolean>(false)
 const validKey = useContext(KeyContext)
@@ -17,20 +23,20 @@ var requestOptions = {
 };
 
 useEffect(() => {
-  if(query) {
+  if(query.value != '') {
     console.log(validKey)
     setIsFetching(true)
-    fetch('https://v3.football.api-sports.io/' + query, requestOptions)
+    fetch('https://v3.football.api-sports.io/' + query.parameter + query.value, requestOptions)
     .then(response => response.json())
     .then(response => {
         setData(response.response);
-        console.log(response.response)
+        console.log(response)
     })
-    .catch(error => console.log('error', error))
+    .catch(errors => console.log('error', errors))
     .finally(() => {
       setIsFetching(false)
     })
   }
-  }, [query])
+  }, [query.value])
 return {data, isFetching}
 }

@@ -15,16 +15,17 @@ type SelectProps = {
 }
 
 type QueryObject = {
-     id?: number
+    team: { id: number,
      name: string,
-     code : string,
-     flag: string
+     logo: string,
+     code: string
+     }
 }
 
-export const Select = (props: SelectProps) => {
+export const SelectTeam = (props: SelectProps) => {
 
 
-const { data, isFetching } = useFetch<QueryObject[]>({parameter: '', value: props.query})
+const { data, isFetching } = useFetch<QueryObject[]>({parameter: 'leagues?code=', value: props.query})
 
 const handleSelect = (event: React.ChangeEvent<HTMLSelectElement>) => {
     props.setSelected(event.target.value)
@@ -47,7 +48,7 @@ return(<>
         <StyledSelect value={props.selected} onChange={handleSelect} onClick={handleClick} disabled={props.isDisabled}>
             <option value='' disabled={true} >{props.text}</option>
             { data?.map((item) => {
-                return <option key={item.name} value={item.id ? item.id : item.code}>{item.name}</option>
+                return <option key={item.team.name} value={item.team.id}>{item.team.name}</option>
             })}
         </StyledSelect>
 
