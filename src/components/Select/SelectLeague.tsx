@@ -9,8 +9,10 @@ import { Query } from "@testing-library/react"
 type SelectProps = {
     text: string,
     selected: string | '',
+    seasonSelected: string | '',
     query: string,
     setSelected: Dispatch<SetStateAction<string>>,
+    setSeasonSelected: Dispatch<SetStateAction<string>>,
     isDisabled: boolean,
     
 }
@@ -28,6 +30,7 @@ type QueryObject = {
 export const SelectLeague = (props: SelectProps) => {
 
 const [ selectedLeague, setSelectedLeague ] = useState<QueryObject | undefined>()
+
 let test: QueryObject[] = [{league: {id: 1, name: 'oi', logo: 'aoksdoakda0'}, seasons: [{year: 2019}]}]
 
 const { data, isFetching } = useFetch<QueryObject[]>({parameter: 'leagues?code=', value: props.query})
@@ -35,6 +38,11 @@ const { data, isFetching } = useFetch<QueryObject[]>({parameter: 'leagues?code='
 const handleSelect = (event: React.ChangeEvent<HTMLSelectElement>) => {
     props.setSelected(event.target.value)
     setSelectedLeague(data?.find(item => item.league.id === Number(event.target.value)))
+    console.log(data)
+}
+
+const handleSeasonSelect = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    props.setSeasonSelected(event.target.value)
     console.log(data)
 }
 
@@ -65,7 +73,7 @@ return(<>
                 return <option key={item.league.name} value={item.league.id}>{item.league.name}</option>
             })}
         </StyledSelect>
-        <StyledSelect value={props.selected} onChange={handleSelect} onClick={handleSeasonClick} disabled={props.selected === '' ? true : false}>
+        <StyledSelect value={props.seasonSelected} onChange={handleSeasonSelect} onClick={handleSeasonClick} disabled={props.selected === '' ? true : false}>
             <option value='' disabled={true} >Selecione a temporada </option>
             { selectedLeague?.seasons.map((item) => {
                 return <option key={item.year} value={item.year}>{item.year}</option>
