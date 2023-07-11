@@ -3,7 +3,6 @@ import styled from "styled-components"
 import { useFetch } from "../../hooks/useFetch"
 import { Loader } from "../Loader/Loader"
 import { CenterContainer } from "../../layouts/CenterContainer/CenterContainer"
-import { Query } from "@testing-library/react"
 
 
 type SelectProps = {
@@ -31,7 +30,6 @@ export const SelectLeague = (props: SelectProps) => {
 
 const [ selectedLeague, setSelectedLeague ] = useState<QueryObject | undefined>()
 
-let test: QueryObject[] = [{league: {id: 1, name: 'oi', logo: 'aoksdoakda0'}, seasons: [{year: 2019}]}]
 
 const { data, isFetching } = useFetch<QueryObject[]>({parameter: 'leagues?code=', value: props.query})
 

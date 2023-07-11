@@ -4,9 +4,7 @@ import { Section } from "./layouts/section/Section"
 import { Title } from "./components/Title/Title"
 import { AppMenu } from "./components/appMenu/AppMenu"
 import { Loader } from "./components/Loader/Loader"
-import { useEffect, createContext, useState } from "react"
-import { TeamMenu } from "./components/TeamMenu/TeamMenu"
-
+import { createContext} from "react"
 
 
 export const KeyContext = createContext('');
@@ -14,9 +12,7 @@ export const KeyContext = createContext('');
 function App() {
  const { error, isValid, key, handleSetKey, isFetching } = useKey()
 
- 
- 
- 
+
   return (
     <KeyContext.Provider value={key}>
       <Section>
@@ -37,7 +33,8 @@ function App() {
       </>)}
       </>)}
       </Section>
-        <TeamMenu></TeamMenu>
+    
+      
       
     </ KeyContext.Provider>
   )

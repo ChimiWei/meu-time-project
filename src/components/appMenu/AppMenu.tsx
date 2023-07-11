@@ -25,7 +25,8 @@ const reset = () => {
         <GridContainer>
         <SelectLeague text="Selecione a Liga" selected={league} seasonSelected={season} isDisabled={country == '' ? true : false} setSelected={setLeague} setSeasonSelected={setSeason} query={country} />
         </GridContainer>
-        <TeamMenu />
+
+         {season != '' && <TeamMenu league={league} season={season} />}
         </>
     )
 }
