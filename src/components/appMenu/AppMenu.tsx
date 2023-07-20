@@ -2,9 +2,8 @@ import { Select } from "../Select/Select"
 import { GridContainer } from "../../layouts/GridContainer/GridContainer"
 import { useState } from "react"
 import { Button } from "../Button/Button"
-import { TeamMenu } from "../TeamMenu/TeamMenu"
 import { SelectLeague } from "../Select/SelectLeague"
-import { SelectTeam } from "../Select/SelectTeam"
+import { TeamList } from "../List/TeamList"
 
 
 
@@ -26,7 +25,7 @@ const reset = () => {
         <SelectLeague text="Selecione a Liga" selected={league} seasonSelected={season} isDisabled={country == '' ? true : false} setSelected={setLeague} setSeasonSelected={setSeason} query={country} />
         </GridContainer>
 
-         {season != '' && <TeamMenu league={league} season={season} />}
+         {season != '' && <TeamList league={league} season={season} />}
         </>
     )
 }

@@ -5,7 +5,6 @@ export const Section = styled.section`
     display: flex;
     justify-content: center;
     align-items: center;
-    text-align: center;
     min-height: 84vh;
     flex-direction: column;
     animation: fadeIn 2s;

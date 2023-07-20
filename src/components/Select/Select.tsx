@@ -62,8 +62,9 @@ const StyledSelect = styled.select`
     font-size: 0.94em;
     text-align: center;
     padding: 0.5em 0.5em;
-    color: #000000;
-    background-color: #ffffff;
+    color: white;
+    background-color: #602749;
+    border-color: #60274997;
     border-radius: 25px;
     box-shadow: 0 8px 8px rgba(31, 30, 30, 0.3);
     outline: 2px solid #3e1c33;
@@ -83,12 +84,12 @@ const StyledSelect = styled.select`
 }
 
     &:focus-visible {
-        outline: 2px solid #635d57dd;
+        outline: 2px solid #5e3a5b;
     }
     &:hover {
         cursor: pointer;
         transform: translateY(-2px);
-        outline: 2px solid #635d57dd;
+        outline: 2px solid #5e3a5b;
     }
     @media (max-width:1160px) {
         min-width: 80%;

@@ -21,15 +21,19 @@ export const CustomInput = (props: InputProps) => {
 
 return(
     <>
-    <div>
+    <Container>
     <p><StyledInput value={key} onChange={handleChange} placeholder="Insira sua chave" /></p>
     <Button onClick={handleClick}> ENTRAR </Button>
-    </div>
+    </Container>
     
     </>
 )
 
 }
+
+const Container = styled.div`
+    text-align: center;
+`
 
 const StyledInput = styled.input`
     text-decoration: none;
